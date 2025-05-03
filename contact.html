@@ -3,46 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact | TANVIR</title>
+  <title>About | TANVIR</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <!-- Responsive Mobile Menu & Animated Title CSS -->
+  <!-- Responsive Mobile Menu CSS -->
   <style>
-    /* Animated Title */
-    .title-banner h2 {
-      display: inline-flex;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--text-color);
-    }
-    .bouncing-title span {
-      display: inline-block;
-      animation: bounce 1s ease-in-out infinite;
-    }
-    .bouncing-title span:nth-child(2) { animation-delay: 0.1s; }
-    .bouncing-title span:nth-child(3) { animation-delay: 0.2s; }
-    .bouncing-title span:nth-child(4) { animation-delay: 0.3s; }
-    .bouncing-title span:nth-child(5) { animation-delay: 0.4s; }
-    .bouncing-title span:nth-child(6) { animation-delay: 0.5s; }
-    .bouncing-title span:nth-child(7) { animation-delay: 0.6s; }
-    .bouncing-title span:nth-child(8) { animation-delay: 0.7s; }
-    .bouncing-title span:nth-child(9) { animation-delay: 0.8s; }
-    .bouncing-title span:nth-child(10) { animation-delay: 0.9s; }
-    .bouncing-title span:nth-child(11) { animation-delay: 1s; }
-    .bouncing-title span:nth-child(12) { animation-delay: 1.1s; }
-    .bouncing-title span:nth-child(13) { animation-delay: 1.2s; }
-    .bouncing-title span:nth-child(14) { animation-delay: 1.3s; }
-    .bouncing-title span:nth-child(15) { animation-delay: 1.4s; }
-    .bouncing-title span:nth-child(16) { animation-delay: 1.5s; }
-    .bouncing-title span:nth-child(17) { animation-delay: 1.6s; }
-    .bouncing-title span:nth-child(18) { animation-delay: 1.7s; }
-    .bouncing-title span:nth-child(19) { animation-delay: 1.8s; }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
-    }
-
     /* Hamburger button styling */
     .hamburger {
       display: none;
@@ -66,7 +31,11 @@
 
     /* Mobile menu behavior */
     @media (max-width: 768px) {
-      .hamburger { display: flex; }
+      /* Show hamburger icon */
+      .hamburger {
+        display: flex;
+      }
+      /* Hide nav-links by default and position dropdown */
       .nav-links {
         display: none;
         position: absolute;
@@ -79,7 +48,11 @@
         overflow: hidden;
         z-index: 900;
       }
-      .nav-links.show { display: flex; }
+      /* Show menu when toggled */
+      .nav-links.show {
+        display: flex;
+      }
+      /* Style links for mobile dropdown */
       .nav-links li a {
         display: block;
         padding: 12px 16px;
@@ -91,7 +64,8 @@
       }
     }
 
-    /* Existing Contact styles... */
+    /* Existing About page styles */
+    /* Animated Background */
     .animated-bg {
       position: relative;
       overflow: hidden;
@@ -109,20 +83,105 @@
       z-index: 0;
     }
     @keyframes bgMove { 0% { transform: translate(0,0);} 50% { transform: translate(25%,25%);} 100% { transform: translate(0,0);} }
-    .container { max-width: 900px; margin: 60px auto; padding: 0 20px; position: relative; z-index: 1; }
-    .section-header { text-align: center; margin-bottom: 40px; }
-    .section-header h2 { font-size: 2.5rem; color: #333; margin: 0; }
-    .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    @media (max-width: 768px) { .contact-section { grid-template-columns: 1fr; } }
-    .contact-info, .contact-form { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .contact-info:hover, .contact-form:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
-    .contact-info h3, .contact-form h3 { margin-top: 0; font-size: 1.75rem; color: #333; }
-    .contact-info p { margin: 10px 0; color: #555; }
-    .contact-form form { display: flex; flex-direction: column; }
-    .contact-form label { margin-bottom: 5px; font-weight: 500; color: #333; }
-    .contact-form input, .contact-form textarea { margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; resize: vertical; }
-    .contact-form button { padding: 12px 20px; font-size: 1rem; border: none; border-radius: 6px; background: var(--primary-color); color: #fff; cursor: pointer; transition: background 0.3s ease; }
-    .contact-form button:hover { background: var(--accent-color); }
+
+    /* About Section Layout */
+    .about-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 50px auto 20px;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+    .about-image {
+      flex: 0 0 300px;
+    }
+    .about-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .about-image img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    .about-text .subtitle {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    .download-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+    .download-btn:hover {
+      background-color: var(--accent-color);
+    }
+
+    /* Skills Cards */
+    .skills {
+      max-width: 1200px;
+      margin: 20px auto 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .skills .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background-color 0.3s ease;
+      padding: 20px;
+      cursor: default;
+    }
+    .skills .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+      border: 2px solid var(--accent-color);
+      background-color: var(--accent-color);
+      color: #fff;
+    }
+    .skills .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    .skills .card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      transition: color 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .about-section { flex-direction: column; padding: 1rem; }
+      .about-image { margin-bottom: 2rem; }
+    }
   </style>
 </head>
 <body class="light-theme">
@@ -136,14 +195,15 @@
 
   <!-- Animated Navbar -->
   <nav class="navbar slide-down" style="position: relative;">
+    <!-- Hamburger toggle -->
     <div class="hamburger" id="hamburger">
       <span></span>
       <span></span>
       <span></span>
     </div>
+    <!-- Navigation links -->
     <ul id="nav-links" class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
       <li><a href="Projects.html">Projects</a></li>
       <li><a href="edu.html">Education</a></li>
       <li><a href="ex.html">Experience</a></li>
@@ -152,30 +212,58 @@
   </nav>
 
   <div class="animated-bg">
-    <div class="container">
-      <div class="section-header slide-down">
-        <h2>Get in Touch</h2>
+    <!-- About Section -->
+    <section class="about-section slide-up">
+      <div class="about-image">
+        <img id="aboutImg" src="profile2.jpg" alt="Tanvir Profile Photo" />
       </div>
-      <div class="contact-section slide-up">
-        <!-- Contact Info -->
-        <div class="contact-info card">
-          <h3>Contact Details</h3>
-          <p><strong>Email:</strong> tanvir.xf@gmail.com</p>
-          <p><strong>Phone:</strong> +44 7438 888381</p>
-          <p><strong>Location:</strong> Connah’s Quay, Deeside, UK (GMT+1)</p>
-          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tanvir153" target="_blank">linkedin.com/in/tanvir153</a></p>
-          <p><strong>GitHub:</strong> <a href="https://github.com/tanvir153" target="_blank">github.com/tanvir153</a></p>
-          <p><strong>Response Time:</strong> Typically within 24 hours</p>
-          <p><strong>Office Hours:</strong> Mon–Fri, 09:00–18:00</p>
-        </div>
+      <div class="about-text">
+        <h2>Who Am I?</h2>
+        <p class="subtitle">
+            I'm MD Tanvir Sardarr a passionate data analyst and aspiring machine learning engineer with a solid foundation in software engineering and a growing specialization in data science. My current academic pursuit at the University of Chester, paired with prior industry experience, has shaped me into a well-rounded problem solver with both strategic vision and technical execution.
+          </p>
+          <p class="subtitle">
+            I hold a Bachelor's degree in Software Engineering from Zhengzhou University, China, where I graduated with distinction and got out standing student award. My journey through data began with programming, blossomed through database systems and AI, and matured into practical work involving real-world datasets, predictive analytics, and insightful visual storytelling.
+          </p>
+          <p class="subtitle">
+            Over the years, I’ve developed and deployed student dropout prediction tools, hospital database systems, Power BI dashboards, and customer churn models each grounded in Python, SQL, and machine learning principles. Comfortable across the full data pipeline, I’m especially passionate about using data to promote educational equity.
+          </p>
+          <p class="subtitle">
+            I’m multilingual. Fluent in Bengali, English, Mandarin, and conversational in Japanese. I thrive in multicultural environments and enjoy learning from global perspectives. My hobbies include playing badminton, sketching UI/UX ideas, studying languages, and exploring futuristic technologies in AI and robotics.
+          </p>
+          <p class="subtitle">
+            Ultimately, I see myself at the intersection of intelligent systems and impactful human experiences, solving problems that matter using data, algorithms, and creativity.
+          </p>
+          <a href="Resume.pdf" download class="download-btn">Download CV</a>
       </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills slide-up">
+      <div class="card">
+        <h3>Data Science</h3>
+        <p>Python (Pandas, NumPy, Matplotlib, Scikit-learn, Seaborn, Word Cloud, SciPy, Flask), SQL, Data Structures & Algorithms (DSA), C++.</p>
+      </div>
+      <div class="card">
+        <h3>Full Stack & UI/UX</h3>
+        <p>HTML, CSS, JavaScript, and UI design in Figma. Experience building responsive web apps and intuitive dashboards.</p>
+      </div>
+      <div class="card">
+        <h3>Languages</h3>
+        <p>Fluent in English, Bengali, Mandarin, and conversational Japanese; strong communication in diverse, multicultural settings.</p>
+      </div>
+    </section>
+
+    <!-- Image Popup Modal -->
+    <div id="imgModal" class="img-modal">
+      <span class="img-close">&times;</span>
+      <img class="img-modal-content" id="modalImg" />
+      <div id="caption" class="img-caption"></div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="footer slide-down">
-    <p>© 2025 Tanvir's Portfolio | All Rights Reserved</p>
-  </footer>
+  <footer class="footer slide-down"><p>© 2025 Tanvir's Portfolio | All Rights Reserved</p></footer>
 
   <!-- JS Scripts -->
   <script>
@@ -185,5 +273,6 @@
       navLinks.classList.toggle('show');
     });
   </script>
+
 </body>
 </html>
