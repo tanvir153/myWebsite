@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | TANVIR</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <!-- Responsive Mobile Menu CSS -->
+  <style>
+    /* Hamburger button styling */
+    .hamburger {
+      display: none;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 24px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile menu behavior */
+    @media (max-width: 768px) {
+      /* Show hamburger icon */
+      .hamburger {
+        display: flex;
+      }
+      /* Hide nav-links by default and position dropdown */
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        flex-direction: column;
+        background: #ffffff;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        z-index: 900;
+      }
+      /* Show menu when toggled */
+      .nav-links.show {
+        display: flex;
+      }
+      /* Style links for mobile dropdown */
+      .nav-links li a {
+        display: block;
+        padding: 12px 16px;
+        color: #333333;
+        text-decoration: none;
+      }
+      .nav-links li a:hover {
+        background: rgba(0,0,0,0.05);
+      }
+    }
+
+    /* Existing About page styles */
+    /* Animated Background */
+    .animated-bg {
+      position: relative;
+      overflow: hidden;
+      background: #f0f4f8;
+    }
+    .animated-bg::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 20% 20%, rgba(0,119,255,0.2), transparent 25%),
+                  radial-gradient(circle at 80% 80%, rgba(0,200,151,0.2), transparent 25%);
+      background-size: 50% 50%;
+      animation: bgMove 20s linear infinite;
+      z-index: 0;
+    }
+    @keyframes bgMove { 0% { transform: translate(0,0);} 50% { transform: translate(25%,25%);} 100% { transform: translate(0,0);} }
+
+    /* About Section Layout */
+    .about-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 50px auto 20px;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+    .about-image {
+      flex: 0 0 300px;
+    }
+    .about-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .about-image img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    .about-text .subtitle {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    .download-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+    .download-btn:hover {
+      background-color: var(--accent-color);
+    }
+
+    /* Skills Cards */
+    .skills {
+      max-width: 1200px;
+      margin: 20px auto 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .skills .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background-color 0.3s ease;
+      padding: 20px;
+      cursor: default;
+    }
+    .skills .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+      border: 2px solid var(--accent-color);
+      background-color: var(--accent-color);
+      color: #fff;
+    }
+    .skills .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    .skills .card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      transition: color 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .about-section { flex-direction: column; padding: 1rem; }
+      .about-image { margin-bottom: 2rem; }
+    }
+  </style>
+</head>
+<body class="light-theme">
+  <div class="title-banner">
+    <h2 class="bouncing-title">
+      <span>C</span><span>o</span><span>d</span><span>e</span><span>.</span>
+      <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span><span>.</span>
+      <span>C</span><span>o</span><span>n</span><span>t</span><span>r</span><span>o</span><span>l</span><span>.</span>
+    </h2>
+  </div>
+
+  <!-- Animated Navbar -->
+  <nav class="navbar slide-down" style="position: relative;">
+    <!-- Hamburger toggle -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- Navigation links -->
+    <ul id="nav-links" class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Projects.html">Projects</a></li>
+      <li><a href="edu.html">Education</a></li>
+      <li><a href="ex.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="animated-bg">
+    <!-- About Section -->
+    <section class="about-section slide-up">
+      <div class="about-image">
+        <img id="aboutImg" src="profile2.jpg" alt="Tanvir Profile Photo" />
+      </div>
+      <div class="about-text">
+        <h2>Who Am I?</h2>
+        <p class="subtitle">
+            I'm MD Tanvir Sardarr a passionate data analyst and aspiring machine learning engineer with a solid foundation in software engineering and a growing specialization in data science. My current academic pursuit at the University of Chester, paired with prior industry experience, has shaped me into a well-rounded problem solver with both strategic vision and technical execution.
+          </p>
+          <p class="subtitle">
+            I hold a Bachelor's degree in Software Engineering from Zhengzhou University, China, where I graduated with distinction and got out standing student award. My journey through data began with programming, blossomed through database systems and AI, and matured into practical work involving real-world datasets, predictive analytics, and insightful visual storytelling.
+          </p>
+          <p class="subtitle">
+            Over the years, I’ve developed and deployed student dropout prediction tools, hospital database systems, Power BI dashboards, and customer churn models each grounded in Python, SQL, and machine learning principles. Comfortable across the full data pipeline, I’m especially passionate about using data to promote educational equity.
+          </p>
+          <p class="subtitle">
+            I’m multilingual. Fluent in Bengali, English, Mandarin, and conversational in Japanese. I thrive in multicultural environments and enjoy learning from global perspectives. My hobbies include playing badminton, sketching UI/UX ideas, studying languages, and exploring futuristic technologies in AI and robotics.
+          </p>
+          <p class="subtitle">
+            Ultimately, I see myself at the intersection of intelligent systems and impactful human experiences, solving problems that matter using data, algorithms, and creativity.
+          </p>
+          <a href="Resume.pdf" download class="download-btn">Download CV</a>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills slide-up">
+      <div class="card">
+        <h3>Data Science</h3>
+        <p>Python (Pandas, NumPy, Matplotlib, Scikit-learn, Seaborn, Word Cloud, SciPy, Flask), SQL, Data Structures & Algorithms (DSA), C++.</p>
+      </div>
+      <div class="card">
+        <h3>Full Stack & UI/UX</h3>
+        <p>HTML, CSS, JavaScript, and UI design in Figma. Experience building responsive web apps and intuitive dashboards.</p>
+      </div>
+      <div class="card">
+        <h3>Languages</h3>
+        <p>Fluent in English, Bengali, Mandarin, and conversational Japanese; strong communication in diverse, multicultural settings.</p>
+      </div>
+    </section>
+
+    <!-- Image Popup Modal -->
+    <div id="imgModal" class="img-modal">
+      <span class="img-close">&times;</span>
+      <img class="img-modal-content" id="modalImg" />
+      <div id="caption" class="img-caption"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer slide-down"><p>© 2025 Tanvir's Portfolio | All Rights Reserved</p></footer>
+
+  <!-- JS Scripts -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger?.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+
+</body>
+</html>

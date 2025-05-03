@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education | TANVIR</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <!-- Mobile Menu & Animation CSS -->
+  <style>
+    /* Nav positioning */
+    nav.navbar { position: relative; }
+    /* Hamburger styling */
+    .hamburger {
+      display: none;
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 24px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: background 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        background: #ffffff;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        border-radius: 0 0 8px 8px;
+        overflow: hidden;
+        z-index: 1000;
+      }
+      .nav-links.show { display: flex; }
+      .nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 12px 16px;
+        color: #333;
+        text-decoration: none;
+      }
+      .nav-links li a:hover { background: rgba(0,0,0,0.05); }
+    }
+  </style>
+  <style>
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .section-header h2 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #333;
+    }
+
+    /* Cards Grid */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Card */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+      border: 2px solid var(--accent-color);
+      background-color: var(--accent-color);
+    }
+    .card:hover h3,
+    .card:hover .meta,
+    .card:hover p,
+    .card:hover ul li {
+      color: #fff;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .card img:hover {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-content h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+    .card-content .meta {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 15px;
+      transition: color 0.3s ease;
+    }
+    .card-content p, .card-content ul {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      transition: color 0.3s ease;
+    }
+    .card-content ul {
+      padding-left: 1.2rem;
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: relative;
+      overflow: hidden;
+      background: #f0f4f8;
+    }
+    .animated-bg::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 20% 20%, rgba(0,119,255,0.2), transparent 25%),
+                  radial-gradient(circle at 80% 80%, rgba(0,200,151,0.2), transparent 25%);
+      background-size: 50% 50%;
+      animation: bgMove 20s linear infinite;
+      z-index: 0;
+    }
+    @keyframes bgMove {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(25%,25%); }
+      100% { transform: translate(0,0); }
+    }
+
+    @media (max-width: 600px) {
+      .card img { height: 180px; }
+    }
+
+    /* Modal */
+    .img-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      align-items: center;
+      justify-content: center;
+    }
+    .img-modal-content {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+    }
+    .img-close {
+      position: absolute;
+      top: 20px; right: 35px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+    .img-caption {
+      margin-top: 15px;
+      color: white;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="light-theme">
+  <div class="title-banner">
+    <h2 class="bouncing-title">
+      <span>C</span><span>o</span><span>d</span><span>e</span><span>.</span>
+      <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span><span>.</span>
+      <span>C</span><span>o</span><span>n</span><span>t</span><span>r</span><span>o</span><span>l</span><span>.</span>
+    </h2>
+  </div>
+
+  <!-- Animated Navbar -->
+  <nav class="navbar slide-down">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="nav-links" class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="Projects.html">Projects</a></li>
+      <li><a href="ex.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="animated-bg">
+    <div class="container">
+      <div class="section-header slide-down"><h2>Education</h2></div>
+      <div class="cards slide-up">
+        <!-- MSc Data Science -->
+        <div class="card"><img src="b1.jpg" alt="University of Chester"><div class="card-content"><h3>MSc Data Science (Ongoing)</h3><div class="meta">University of Chester, UK</div><p><strong>Modules:</strong> Data Science Principles, Statistical Programming, SQL, Machine Learning, Enterprise Development, Research Methods, Dissertation</p></div></div>
+        <!-- BSc Software Engineering -->
+        <div class="card"><img src="b3.jpg" alt="Zhengzhou University"><div class="card-content"><h3>BSc Software Engineering</h3><div class="meta">Zhengzhou University, China • CGPA: 3.47/4.00 (87%)</div><p><strong>Outstanding Student Award</strong></p><ul><li>C, Java, Python, Data Structures & Algorithms</li><li>Computer Architecture & Organization</li><li>Database Systems, AI, Software Requirements Engineering</li><li>Calculus, Probability & Statistics</li><li>Operating Systems, Computer Networks</li></ul></div></div>
+        <!-- Python Boot Camp -->
+        <div class="card"><img src="b4.jpg" alt="BUET Python Bootcamp"><div class="card-content"><h3>Python Boot Camp</h3><div class="meta">Bangladesh University of Engineering and Technology (BUET) • 2024</div></div></div>
+        <!-- Outstanding Student Award -->
+        <div class="card"><img src="b2.jpg" alt="Award"><div class="card-content"><h3>Outstanding Student Award</h3><div class="meta">Zhengzhou University • 2021</div></div></div>
+      </div>
+    </div>
+
+    <!-- Image Popup Modal -->
+    <div id="imgModal" class="img-modal">
+      <span class="img-close">&times;</span>
+      <img class="img-modal-content" id="modalImg" />
+      <div id="caption" class="img-caption"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer slide-down"><p>© 2025 Tanvir's Portfolio | All Rights Reserved</p></footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Modal logic
+    const modal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImg');
+    const captionText = document.getElementById('caption');
+    document.querySelectorAll('.card img').forEach(img => {
+      img.onclick = () => {
+        modal.style.display = 'flex';
+        modalImg.src = img.src;
+        captionText.textContent = img.alt;
+      };
+    });
+    document.querySelector('.img-close').onclick = () => { modal.style.display = 'none'; };
+    modal.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
+  </script>
+</body>
+</html>
