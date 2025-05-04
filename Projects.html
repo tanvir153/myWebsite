@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects | TANVIR</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
   <style>
     /* --- RESET & BASE --- */
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,6 +41,7 @@
       justify-content: center;
       gap: 2rem;
     }
+    .nav-links li { list-style: none; }
     .nav-links a {
       color: #fff;
       text-decoration: none;
@@ -64,19 +63,37 @@
       background: #fff;
       border-radius: 2px;
     }
-    @media (max-width:768px) {
-      .hamburger { display: flex; }
+
+    @media (max-width: 768px) {
+      /* show hamburger on right */
+      .hamburger {
+        display: flex;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
       .nav-links {
         display: none;
         position: absolute;
-        top: 60px;
-        right: 1rem;
+        top: 100%;
+        left: 0;
+        right: 0;
         background: #fff;
         flex-direction: column;
+        align-items: center;
         box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        z-index: 20;
       }
-      .nav-links.show { display: flex; }
-      .nav-links a { color: #333; padding: 0.75rem 1rem; }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-links a {
+        color: #333;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        text-align: center;
+      }
     }
 
     /* --- HEADER --- */
@@ -170,8 +187,10 @@
   </div>
 
   <nav>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -192,69 +211,59 @@
     <!-- AMAZON CARD with embedded notebook -->
     <div class="project-card">
       <h3>Amazon Sales Trend Analysis</h3>
-      <p>
-        Analyzed Amazon product reviews: data cleaning, EDA, word clouds, 
-        and sentiment analysis to uncover trends.
-      </p>
-      <a href="https://github.com/tanvir153/dataScienceProject1" target="_blank">
-        View on GitHub
-      </a>
-
-      <!-- Notebook embedded right inside this card -->
+      <p>An EDA and sentiment analysis on Amazon reviews to uncover sales trends.</p>
+      <a href="https://github.com/tanvir153/dataScienceProject1" target="_blank">View on GitHub</a>
       <div class="notebook-embed">
-        <h4> Trend Analysis</h4>
-        <iframe
-          src="data_analysis.html"
-          title="Sales Trend Analysis Notebook">
-        </iframe>
+        <h4>Trend Analysis</h4>
+        <iframe src="data_analysis.html" title="Sales Trend Analysis Notebook"></iframe>
       </div>
     </div>
 
     <div class="project-card">
       <h3>Predictive Model for Customer Churn</h3>
-      <p>Built ML models (Logistic Regression, Random Forest) predicting customer churn with feature engineering and evaluation metrics.</p>
+      <p>Built ML models (Logistic Regression, Random Forest) to predict customer churn.</p>
       <a href="https://github.com/tanvir153/retail-sales-trend-forecasting" target="_blank">View on GitHub</a>
     </div>
 
     <div class="project-card">
       <h3>Student Dropout Predictor</h3>
-      <p>Web-based ML app predicting student dropout risk; includes interactive visualizations and personalized recommendations.</p>
+      <p>Interactive web app predicting student dropout risk with visualizations.</p>
       <a href="https://github.com/tanvir153/student-dropout-predictor" target="_blank">View on GitHub</a>
     </div>
 
     <div class="project-card">
-      <h3>Exploratory Analysis &amp; Visualization of Iris, Nile &amp; MPG</h3>
-      <p>EDA of the Iris dataset in Python, followed by R analyses of the Nile and mpg data to visualize distributions and trends.</p>
+      <h3>Exploratory Analysis of Iris, Nile &amp; MPG</h3>
+      <p>EDA in Python and R to visualize dataset distributions and trends.</p>
       <a href="https://github.com/tanvir153/Multivariate-Data-Visualization-Python-R" target="_blank">View on GitHub</a>
     </div>
 
     <div class="project-card">
       <h3>House Price Prediction with Ridge Regression</h3>
-      <p>Developed and evaluated a Ridge Regression model on a large real-estate dataset to forecast housing prices.</p>
+      <p>Forecasted real-estate prices using Ridge Regression on a large dataset.</p>
       <a href="https://github.com/tanvir153/StatisticalProgramming" target="_blank">View on GitHub</a>
     </div>
 
     <div class="project-card">
       <h3>COVID-19 Data Analysis</h3>
-      <p>Exploratory analysis and visualizations of global COVID-19 trends using Pandas and Matplotlib.</p>
+      <p>Global COVID-19 trend visualizations using Pandas and Matplotlib.</p>
       <a href="https://github.com/tanvir153/-Survival-Prediction-Using-Gradient-Boosting-Regression-" target="_blank">View on GitHub</a>
     </div>
 
     <div class="project-card">
       <h3>Car Price Prediction by Random Forest</h3>
-      <p>Predicted car prices using a Random Forest Regressor with data preprocessing, evaluation, and visualization.</p>
+      <p>Random Forest Regressor to predict car prices with full evaluation.</p>
       <a href="https://github.com/tanvir153/Car-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View on GitHub</a>
     </div>
 
     <div class="project-card">
       <h3>HealthCareDB (SQL)</h3>
-      <p>A comprehensive SQL database for managing hospital operations.</p>
+      <p>A SQL database design for managing hospital operations.</p>
       <a href="https://github.com/tanvir153/tanvir153-HealthCareDB-SQLDesign" target="_blank">View on GitHub</a>
     </div>
 
     <div class="project-card">
       <h3>Hospital Management System (MongoDB)</h3>
-      <p>NoSQL system simulating hospital operations: CRUD, aggregations, and indexing for efficient data handling.</p>
+      <p>NoSQL CRUD app for simulating hospital workflows with indexing.</p>
       <a href="https://github.com/tanvir153/Hospital-Management-System-NOSQL-version" target="_blank">View on GitHub</a>
     </div>
   </section>
@@ -265,8 +274,10 @@
 
   <script>
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('show'));
+    const navLinks  = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
   </script>
 
 </body>
