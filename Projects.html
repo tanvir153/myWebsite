@@ -6,112 +6,160 @@
   <title>Projects | TANVIR</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <!-- Mobile Menu CSS -->
+
   <style>
+    /* --- RESET & BASE --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; color: #333; line-height: 1.6; }
+
+    /* --- TITLE BANNER --- */
+    .title-banner {
+      background: #1a1a1a;
+      text-align: center;
+      padding: 1.5rem 0;
+    }
+    .bouncing-title span {
+      display: inline-block;
+      color: #fff;
+      font-size: 2rem;
+      animation: bounce 1.5s infinite ease-in-out;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-10px); }
+    }
+
+    /* --- NAVBAR --- */
+    nav {
+      background: #0078d4;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 0.75rem 1rem;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 0.7; }
+
+    /* --- HAMBURGER (mobile) --- */
     .hamburger {
       display: none;
-      position: absolute;
-      top: 20px;
-      right: 20px;
       flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 24px;
+      gap: 5px;
       cursor: pointer;
-      z-index: 1000;
     }
     .hamburger span {
-      display: block;
+      width: 25px;
       height: 3px;
-      background: #ffffff;
+      background: #fff;
       border-radius: 2px;
-      transition: all 0.3s ease;
     }
-    @media (max-width: 768px) {
+    @media (max-width:768px) {
       .hamburger { display: flex; }
       .nav-links {
         display: none;
         position: absolute;
         top: 60px;
-        right: 20px;
+        right: 1rem;
+        background: #fff;
         flex-direction: column;
-        background: #ffffff;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        overflow: hidden;
-        z-index: 900;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       }
       .nav-links.show { display: flex; }
-      .nav-links li a {
-        padding: 12px 16px;
-        display: block;
-        color: #333;
-        text-decoration: none;
-      }
-      .nav-links li a:hover { background: rgba(0,0,0,0.05); }
+      .nav-links a { color: #333; padding: 0.75rem 1rem; }
     }
-  </style>
-  <style>
-    /* Projects Section Layout */
-    .projects-section {
+
+    /* --- HEADER --- */
+    .projects-header {
+      text-align: center;
+      margin: 3rem 1rem 2rem;
+    }
+    .projects-header h2 { font-size:2.5rem; margin-bottom: .5rem; }
+    .projects-header a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .projects-header a:hover { text-decoration: underline; }
+
+    /* --- GRID & CARDS --- */
+    .projects-grid {
       max-width: 1200px;
-      margin: 50px auto;
-      padding: 2rem;
+      margin: 0 auto 4rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
       gap: 2rem;
+      padding: 0 1rem;
     }
     .project-card {
       background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
-      min-height: 260px;
+      transition: transform .3s, box-shadow .3s;
+      overflow: hidden;
     }
     .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-      background-color: var(--accent-color);
-      color: #fff;
-    }
-    .project-card:hover h3,
-    .project-card:hover p,
-    .project-card:hover a {
-      color: #fff;
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
     .project-card h3 {
-      font-size: 1.25rem;
+      color: #0078d4;
       margin: 1rem;
-      color: #333;
-      transition: color 0.3s ease;
+      font-size: 1.25rem;
     }
     .project-card p {
       flex: 1;
       margin: 0 1rem 1rem;
       color: #555;
-      line-height: 1.5;
-      transition: color 0.3s ease;
     }
     .project-card a {
-      display: block;
       margin: 0 1rem 1rem;
+      color: #0078d4;
       text-decoration: none;
-      color: var(--primary-color);
       font-weight: 500;
-      transition: color 0.3s ease;
     }
-    .project-card:hover a {
-      text-decoration: underline;
+    .project-card a:hover { text-decoration: underline; }
+
+    /* --- NOTEBOOK EMBED INSIDE CARD --- */
+    .notebook-embed {
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      padding: 1rem;
     }
-    @media (max-width: 768px) {
-      .projects-section { padding: 1rem; }
+    .notebook-embed h4 {
+      margin-bottom: .75rem;
+      font-size: 1rem;
+      color: #333;
+    }
+    .notebook-embed iframe {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
     }
   </style>
 </head>
-<body class="light-theme">
+<body>
 
   <div class="title-banner">
     <h2 class="bouncing-title">
@@ -120,13 +168,12 @@
       <span>C</span><span>o</span><span>n</span><span>t</span><span>r</span><span>o</span><span>l</span><span>.</span>
     </h2>
   </div>
-  <nav class="navbar slide-down" style="position: relative;">
+
+  <nav>
     <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
-    <ul id="nav-links" class="nav-links">
+    <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="edu.html">Education</a></li>
@@ -136,16 +183,31 @@
     </ul>
   </nav>
 
-  <!-- Projects Section -->
-  <section class="custom-heading slide-down" style="text-align:center; margin-top:40px;">
-    <h2 style="font-size:2.5rem; color:#333;">My Projects</h2>
-    <h3 style="font-size:1rem ;"><a href="https://github.com/tanvir153">Visit my GitHub</a> </h3>
+  <section class="projects-header">
+    <h2>My Projects</h2>
+    <p><a href="https://github.com/tanvir153" target="_blank">Visit my GitHub →</a></p>
   </section>
-  <section class="projects-section slide-up">
+
+  <section class="projects-grid">
+    <!-- AMAZON CARD with embedded notebook -->
     <div class="project-card">
-      <h3>Amazon Product Review Analysis</h3>
-      <p>Analyzed Amazon product reviews: data cleaning, EDA, word clouds, and sentiment analysis to uncover trends.</p>
-      <a href="https://github.com/tanvir153/dataScienceProject1" target="_blank">View on GitHub</a>
+      <h3>Amazon Sales Trend Analysis</h3>
+      <p>
+        Analyzed Amazon product reviews: data cleaning, EDA, word clouds, 
+        and sentiment analysis to uncover trends.
+      </p>
+      <a href="https://github.com/tanvir153/dataScienceProject1" target="_blank">
+        View on GitHub
+      </a>
+
+      <!-- Notebook embedded right inside this card -->
+      <div class="notebook-embed">
+        <h4> Trend Analysis</h4>
+        <iframe
+          src="data_analysis.html"
+          title="Sales Trend Analysis Notebook">
+        </iframe>
+      </div>
     </div>
 
     <div class="project-card">
@@ -159,59 +221,53 @@
       <p>Web-based ML app predicting student dropout risk; includes interactive visualizations and personalized recommendations.</p>
       <a href="https://github.com/tanvir153/student-dropout-predictor" target="_blank">View on GitHub</a>
     </div>
-  
+
     <div class="project-card">
-      <h3>“Exploratory Analysis & Visualization of Iris, Nile & MPG Datasets in Python and R”</h3>
-      <p>EDA of the Iris dataset in Python (summary stats, plots, parallel‐coordinates) followed by base R and ggplot2 analyses of the Nile time series and mpg data to visualize distributions and trends.</p>
+      <h3>Exploratory Analysis &amp; Visualization of Iris, Nile &amp; MPG</h3>
+      <p>EDA of the Iris dataset in Python, followed by R analyses of the Nile and mpg data to visualize distributions and trends.</p>
       <a href="https://github.com/tanvir153/Multivariate-Data-Visualization-Python-R" target="_blank">View on GitHub</a>
     </div>
 
     <div class="project-card">
-        <h3>“House Price Prediction Using Ridge Regression: A Comparative Analysis”</h3>
-        <p>Developed and evaluated a Ridge Regression model on a large real‐estate dataset (500,000+ records) to forecast housing prices.
-        The workflow included extensive EDA (histograms, boxplots, heatmaps), feature engineering (polynomial terms, outlier removal, scaling), 
-        hyperparameter tuning via GridSearchCV, and comparison against Linear and Lasso regression</p>
-        <a href="https://github.com/tanvir153/StatisticalProgramming" target="_blank">View on GitHub</a>
-      </div>
-
-    <div class="project-card">
-        <h3>COVID-19 Data Analysis</h3>
-        <p>Exploratory analysis and visualizations of global COVID-19 trends using Pandas and Matplotlib.</p>
-        <a href="https://github.com/tanvir153/-Survival-Prediction-Using-Gradient-Boosting-Regression-" target="_blank">View on GitHub</a>
-      </div>
-  
-      <div class="project-card">
-        <h3>Car Price Prediction by Random-Forest Regressor</h3>
-        <p>A machine learning project that predicts car prices using Random Forest Regressor with data preprocessing, model evaluation, and visual analysis.</p>
-        <a href="https://github.com/tanvir153/Car-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View on GitHub</a>
-      </div>
-
-    <div class="project-card">
-        <h3>“HealthCareDB”</h3>
-        <p>A comprehensive SQL database project for managing hospital operations.</p>
-        <a href="https://github.com/tanvir153/tanvir153-HealthCareDB-SQLDesign" target="_blank">View on GitHub</a>
-      </div>
-
-    <div class="project-card">
-        <h3>Hospital Management System (MongoDB)</h3>
-        <p>NoSQL system simulating hospital operations: CRUD, aggregations, and indexing for efficient data handling.</p>
-        <a href="https://github.com/tanvir153/Hospital-Management-System-NOSQL-version" target="_blank">View on GitHub</a>
+      <h3>House Price Prediction with Ridge Regression</h3>
+      <p>Developed and evaluated a Ridge Regression model on a large real-estate dataset to forecast housing prices.</p>
+      <a href="https://github.com/tanvir153/StatisticalProgramming" target="_blank">View on GitHub</a>
     </div>
 
-  
+    <div class="project-card">
+      <h3>COVID-19 Data Analysis</h3>
+      <p>Exploratory analysis and visualizations of global COVID-19 trends using Pandas and Matplotlib.</p>
+      <a href="https://github.com/tanvir153/-Survival-Prediction-Using-Gradient-Boosting-Regression-" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Car Price Prediction by Random Forest</h3>
+      <p>Predicted car prices using a Random Forest Regressor with data preprocessing, evaluation, and visualization.</p>
+      <a href="https://github.com/tanvir153/Car-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <h3>HealthCareDB (SQL)</h3>
+      <p>A comprehensive SQL database for managing hospital operations.</p>
+      <a href="https://github.com/tanvir153/tanvir153-HealthCareDB-SQLDesign" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Hospital Management System (MongoDB)</h3>
+      <p>NoSQL system simulating hospital operations: CRUD, aggregations, and indexing for efficient data handling.</p>
+      <a href="https://github.com/tanvir153/Hospital-Management-System-NOSQL-version" target="_blank">View on GitHub</a>
+    </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
+  <footer>
     <p>© 2025 Tanvir's Portfolio | All Rights Reserved</p>
   </footer>
 
   <script>
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('show'));
   </script>
+
 </body>
 </html>
