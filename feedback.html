@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback | TANVIR</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    .hamburger { display: none; position: absolute; top: 20px; right: 20px; flex-direction: column; justify-content: space-around; width: 30px; height: 24px; cursor: pointer; z-index: 1000; }
+    .hamburger span { display: block; height: 3px; background: #ffffff; border-radius: 2px; transition: all 0.3s ease; }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 60px; right: 20px; flex-direction: column; background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; z-index: 900; }
+      .nav-links.show { display: flex; }
+      .nav-links li a { display: block; padding: 12px 16px; color: #333333; text-decoration: none; }
+      .nav-links li a:hover { background: rgba(0,0,0,0.05); }
+    }
+    .animated-bg {
+      position: relative;
+      overflow: hidden;
+      background: #f0f4f8;
+      padding: 3rem 1rem;
+    }
+    .animated-bg::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 20% 20%, rgba(0,119,255,0.2), transparent 25%),
+                  radial-gradient(circle at 80% 80%, rgba(0,200,151,0.2), transparent 25%);
+      background-size: 50% 50%;
+      animation: bgMove 20s linear infinite;
+      z-index: 0;
+    }
+    @keyframes bgMove {
+      0%, 100% { transform: translate(0,0);}
+      50% { transform: translate(25%,25%);}
+    }
+
+    .feedback-container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .feedback-container h2, h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    #feedbackForm label {
+      font-weight: 600;
+      margin-top: 1rem;
+      display: block;
+    }
+
+    #feedbackForm input, #feedbackForm textarea, #feedbackForm select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    #feedbackForm button {
+      margin-top: 1rem;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #feedbackForm button:hover {
+      background: var(--accent-color);
+    }
+
+    .comment-box {
+      background: #eef2ff;
+      border-left: 4px solid var(--primary-color);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .comment-box button.delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+    }
+
+    .pagination button {
+      background: #0077ff;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .pagination button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    #clearFeedback {
+      display: none;
+      background: #cc0000;
+      color: white;
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="light-theme">
+
+  <!-- Title Banner -->
+  <div class="title-banner">
+    <h2 class="bouncing-title">
+      <span>C</span><span>o</span><span>d</span><span>e</span><span>.</span>
+      <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span><span>.</span>
+      <span>C</span><span>o</span><span>n</span><span>t</span><span>r</span><span>o</span><span>l</span><span>.</span>
+    </h2>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar slide-down">
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <ul id="nav-links" class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="Projects.html">Projects</a></li>
+      <li><a href="edu.html">Education</a></li>
+      <li><a href="ex.html">Experience</a></li>
+      <li><a href="galary.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Feedback Section -->
+  <div class="animated-bg">
+    <div class="feedback-container">
+      <h2>Leave Your Feedback</h2>
+      <form id="feedbackForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+
+        <label for="country">Country</label>
+        <select id="country" required>
+          <option value="">Select your country</option>
+          <option>United Kingdom</option>
+          <option>Bangladesh</option>
+          <option>India</option>
+          <option>United States</option>
+          <option>China</option>
+          <option>Other</option>
+        </select>
+
+        <label for="role">I am a</label>
+        <select id="role" required>
+          <option value="">Select your role</option>
+          <option>Student</option>
+          <option>Recruiter</option>
+          <option>Faculty</option>
+          <option>Other</option>
+        </select>
+
+        <label for="comments">Comments</label>
+        <textarea id="comments" rows="4" required></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <h3>What Others Are Saying</h3>
+      <div id="commentSection"></div>
+
+      <div class="pagination">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+      </div>
+
+      <button id="clearFeedback">Clear All Feedback</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer slide-down">
+    <p>© 2025 Tanvir's Portfolio | All Rights Reserved</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const form = document.getElementById('feedbackForm');
+    const commentSection = document.getElementById('commentSection');
+    const clearBtn = document.getElementById('clearFeedback');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let allComments = [];
+    let currentPage = 0;
+    const commentsPerPage = 4;
+    const isAdmin = new URLSearchParams(window.location.search).get('admin') === '1';
+    if (isAdmin) clearBtn.style.display = 'block';
+
+    window.onload = function () {
+      allComments = JSON.parse(localStorage.getItem('feedbackList')) || [];
+      renderComments();
+    };
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const country = document.getElementById('country').value.trim();
+      const role = document.getElementById('role').value.trim();
+      const comment = document.getElementById('comments').value.trim();
+
+      if (name && comment && country && role) {
+        const feedback = { name, comment, country, role };
+        allComments.unshift(feedback);
+        localStorage.setItem('feedbackList', JSON.stringify(allComments));
+        form.reset();
+        currentPage = 0;
+        renderComments();
+      }
+    });
+
+    function renderComments() {
+      commentSection.innerHTML = '';
+      const start = currentPage * commentsPerPage;
+      const end = start + commentsPerPage;
+      const pageComments = allComments.slice(start, end);
+
+      pageComments.forEach((feedback, index) => {
+        const { name, comment, country, role } = feedback;
+        const box = document.createElement('div');
+        box.className = 'comment-box';
+        box.innerHTML = `
+          <strong>${name} (${role || 'Other'} from ${country || 'Unknown'}) says:</strong>
+          <p>${comment}</p>
+          ${isAdmin ? `<button class="delete-btn" data-index="${start + index}">Delete</button>` : ''}
+        `;
+        commentSection.appendChild(box);
+      });
+
+      prevBtn.disabled = currentPage === 0;
+      nextBtn.disabled = end >= allComments.length;
+
+      if (isAdmin) {
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+          btn.addEventListener('click', function () {
+            const idx = parseInt(this.getAttribute('data-index'));
+            if (confirm('Delete this comment?')) {
+              allComments.splice(idx, 1);
+              localStorage.setItem('feedbackList', JSON.stringify(allComments));
+              renderComments();
+            }
+          });
+        });
+      }
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        renderComments();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if ((currentPage + 1) * commentsPerPage < allComments.length) {
+        currentPage++;
+        renderComments();
+      }
+    });
+
+    clearBtn.addEventListener('click', function () {
+      if (confirm('Are you sure you want to clear all feedback?')) {
+        allComments = [];
+        localStorage.removeItem('feedbackList');
+        renderComments();
+      }
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger?.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>
