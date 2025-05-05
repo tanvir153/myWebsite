@@ -3,69 +3,176 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TANVIR | Data Analytics Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Projects | TANVIR</title>
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <!-- Responsive Mobile Menu CSS -->
   <style>
-    /* Hamburger button styling */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; color: #333; line-height: 1.6; }
+  
+    .title-banner {
+      background: #1a1a1a;
+      text-align: center;
+      padding: 1.5rem 0;
+    }
+    .bouncing-title span {
+      display: inline-block;
+      color: #fff;
+      font-size: 2rem;
+      animation: bounce 1.5s infinite ease-in-out;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-10px); }
+    }
+  
+    nav {
+      background: #0078d4;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 0.75rem 1rem;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .nav-links li { list-style: none; }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 0.7; }
+  
     .hamburger {
       display: none;
-      position: absolute;
-      top: 20px;
-      right: 20px;
       flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 24px;
+      gap: 5px;
       cursor: pointer;
-      z-index: 1000;
     }
     .hamburger span {
-      display: block;
+      width: 25px;
       height: 3px;
-      background: #ffffff;
+      background: #fff;
       border-radius: 2px;
-      transition: all 0.3s ease;
     }
-
-    /* Mobile menu behavior */
+  
     @media (max-width: 768px) {
-      /* Show hamburger icon */
       .hamburger {
         display: flex;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
       }
-      /* Hide nav-links by default and position dropdown */
       .nav-links {
         display: none;
         position: absolute;
-        top: 60px;
-        right: 20px;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
         flex-direction: column;
-        background: #ffffff;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        overflow: hidden;
-        z-index: 900;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        z-index: 20;
       }
-      /* Show menu when toggled */
       .nav-links.show {
         display: flex;
       }
-      /* Style links for mobile dropdown */
-      .nav-links li a {
-        display: block;
-        padding: 12px 16px;
-        color: #333333;
-        text-decoration: none;
-      }
-      .nav-links li a:hover {
-        background: rgba(0,0,0,0.05);
+      .nav-links a {
+        color: #333;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        text-align: center;
       }
     }
+  
+    .projects-header {
+      text-align: center;
+      margin: 3rem 1rem 2rem;
+    }
+    .projects-header h2 { font-size:2.5rem; margin-bottom: .5rem; }
+    .projects-header a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .projects-header a:hover { text-decoration: underline; }
+  
+    .projects-grid {
+      max-width: 1400px;
+      margin: 0 auto 4rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+  
+    .project-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s, box-shadow .3s;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .project-card h3 {
+      color: #0078d4;
+      margin: 1rem;
+      font-size: 1.25rem;
+    }
+    .project-card p {
+      flex: 1;
+      margin: 0 1rem 1rem;
+      color: #555;
+    }
+    .project-card a {
+      margin: 0 1rem 1rem;
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .project-card a:hover { text-decoration: underline; }
+  
+    .notebook-embed {
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+    .notebook-embed h4 {
+      margin-bottom: .75rem;
+      font-size: 1rem;
+      color: #333;
+    }
+    .notebook-embed iframe {
+      width: 100%;
+      height: 450px;
+      min-width: 600px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  
+    footer {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
   </style>
+  
 </head>
-<body class="light-theme">
+<body>
 
   <div class="title-banner">
     <h2 class="bouncing-title">
@@ -75,18 +182,15 @@
     </h2>
   </div>
 
-  <!-- Animated Navbar -->
-  <nav class="navbar slide-down" style="position: relative;">
-    <!-- Hamburger toggle -->
-    <div class="hamburger" id="hamburger">
+  <nav>
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <!-- Navigation links -->
-    <ul id="nav-links" class="nav-links">
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="Projects.html">Projects</a></li>
       <li><a href="edu.html">Education</a></li>
       <li><a href="ex.html">Experience</a></li>
       <li><a href="galary.html">Gallery</a></li>
@@ -94,52 +198,90 @@
     </ul>
   </nav>
 
-  <!-- Hero Section with Animation -->
-  <section id="home" class="hero fade-in">
-    <div class="animated-background"></div>
-    <div class="hero-text animated-text">
-      <h2>
-        <span>Hello, I'm</span>
-        <span class="highlight">Tanvir</span>
-      </h2>
-      <p class="subtitle">Data Analyst | Full Stack Developer | Multilingual Analyst</p>
+  <section class="projects-header">
+    <h2>My Projects</h2>
+    <p><a href="https://github.com/tanvir153" target="_blank">Visit my GitHub →</a></p>
+  </section>
+
+  <section class="projects-grid">
+    <!-- AMAZON CARD with embedded notebook -->
+    <div class="project-card">
+      <h3>Amazon Sales Trend Analysis</h3>
+      <p>An EDA and sentiment analysis on Amazon reviews to uncover sales trends.</p>
+      <a href="https://github.com/tanvir153/dataScienceProject1" target="_blank">View on GitHub</a>
+      <div class="notebook-embed">
+        <h4>Trend Analysis</h4>
+        <iframe src="data_analysis.html" title="Sales Trend Analysis Notebook"></iframe>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>Analysing & Predicting Sales Trends</h3>
+      <p>Built ML models (Logistic Regression, Random Forest) to Analysing & Predicting products sales trends.</p>
+      <a href="https://github.com/tanvir153/retail-sales-trend-forecasting" target="_blank">View on GitHub</a>
+      <div class="notebook-embed">
+        <h4>Analysing & Predicting products sales trends</h4>
+        <iframe src="SalesTrends.html" title="Sales Trend Analysis Notebook"></iframe>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>Student Dropout Predictor</h3>
+      <p>Interactive web app predicting student dropout risk with visualizations.</p>
+      <a href="https://github.com/tanvir153/student-dropout-predictor" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Exploratory Analysis of Iris, Nile &amp; MPG</h3>
+      <p>EDA in Python and R to visualize dataset distributions and trends.</p>
+      <a href="https://github.com/tanvir153/Multivariate-Data-Visualization-Python-R" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <h3>House Price Prediction with Ridge Regression</h3>
+      <p>Forecasted real-estate prices using Ridge Regression on a large dataset.</p>
+      <a href="https://github.com/tanvir153/StatisticalProgramming" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <h3>COVID-19 Data Analysis</h3>
+      <p>Global COVID-19 trend visualizations using Pandas and Matplotlib.</p>
+      <a href="https://github.com/tanvir153/-Survival-Prediction-Using-Gradient-Boosting-Regression-" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Car Price Prediction by Random Forest</h3>
+      <p>Random Forest Regressor to predict car prices with full evaluation.</p>
+      <a href="https://github.com/tanvir153/Car-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View on GitHub</a>
+      <div class="notebook-embed">
+        <h4>Car Prediction</h4>
+        <iframe src="Car.html" title="Sales Trend Analysis Notebook"></iframe>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>HealthCareDB (SQL)</h3>
+      <p>A SQL database design for managing hospital operations.</p>
+      <a href="https://github.com/tanvir153/tanvir153-HealthCareDB-SQLDesign" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Hospital Management System (MongoDB)</h3>
+      <p>NoSQL CRUD app for simulating hospital workflows with indexing.</p>
+      <a href="https://github.com/tanvir153/Hospital-Management-System-NOSQL-version" target="_blank">View on GitHub</a>
     </div>
   </section>
 
-  <!-- Added Section -->
-  <section class="custom-message slide-up">
-    <div class="hero-text">
-      <h2>Welcome to My World of Data</h2>
-      <p class="subtitle"> Whether I'm designing machine learning models or visualizing complex sales trends into dashboards, I focus on building solutions that are intelligent, ethical, and human-centered. This portfolio is a glimpse of algorithms, code, and a constant quest to make data work smarter.
-      </p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
+  <footer>
     <p>© 2025 Tanvir's Portfolio | All Rights Reserved</p>
   </footer>
 
-  <!-- JS Scripts -->
   <script>
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger?.addEventListener('click', () => {
+    const navLinks  = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
       navLinks.classList.toggle('show');
     });
-
-    document.getElementById('theme-toggle')?.addEventListener('click', () => {
-      document.body.classList.toggle('dark-theme');
-      document.body.classList.toggle('light-theme');
-    });
-
-    const clock = document.getElementById('clock');
-    if (clock) {
-      setInterval(() => {
-        const now = new Date();
-        clock.textContent = now.toLocaleTimeString();
-      }, 1000);
-    }
   </script>
 
 </body>
