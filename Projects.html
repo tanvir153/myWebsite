@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects | TANVIR</title>
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    /* --- RESET & BASE --- */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Poppins', sans-serif; color: #333; line-height: 1.6; }
-
-    /* --- TITLE BANNER --- */
+  
     .title-banner {
       background: #1a1a1a;
       text-align: center;
@@ -26,8 +25,7 @@
       0%,100% { transform: translateY(0); }
       50%     { transform: translateY(-10px); }
     }
-
-    /* --- NAVBAR --- */
+  
     nav {
       background: #0078d4;
       position: sticky;
@@ -49,8 +47,7 @@
       transition: opacity 0.2s;
     }
     .nav-links a:hover { opacity: 0.7; }
-
-    /* --- HAMBURGER (mobile) --- */
+  
     .hamburger {
       display: none;
       flex-direction: column;
@@ -63,9 +60,8 @@
       background: #fff;
       border-radius: 2px;
     }
-
+  
     @media (max-width: 768px) {
-      /* show hamburger on right */
       .hamburger {
         display: flex;
         position: absolute;
@@ -95,8 +91,7 @@
         text-align: center;
       }
     }
-
-    /* --- HEADER --- */
+  
     .projects-header {
       text-align: center;
       margin: 3rem 1rem 2rem;
@@ -108,16 +103,16 @@
       font-weight: 500;
     }
     .projects-header a:hover { text-decoration: underline; }
-
-    /* --- GRID & CARDS --- */
+  
     .projects-grid {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto 4rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
       gap: 2rem;
       padding: 0 1rem;
     }
+  
     .project-card {
       background: #fff;
       border-radius: 8px;
@@ -148,12 +143,12 @@
       font-weight: 500;
     }
     .project-card a:hover { text-decoration: underline; }
-
-    /* --- NOTEBOOK EMBED INSIDE CARD --- */
+  
     .notebook-embed {
       background: #fafafa;
       border-top: 1px solid #eee;
       padding: 1rem;
+      overflow-x: auto;
     }
     .notebook-embed h4 {
       margin-bottom: .75rem;
@@ -162,12 +157,12 @@
     }
     .notebook-embed iframe {
       width: 100%;
-      height: 300px;
+      height: 450px;
+      min-width: 600px;
       border: 1px solid #ddd;
       border-radius: 4px;
     }
-
-    /* --- FOOTER --- */
+  
     footer {
       background: #1a1a1a;
       color: #fff;
@@ -175,6 +170,7 @@
       padding: 1rem 0;
     }
   </style>
+  
 </head>
 <body>
 
@@ -220,9 +216,13 @@
     </div>
 
     <div class="project-card">
-      <h3>Predictive Model for Customer Churn</h3>
-      <p>Built ML models (Logistic Regression, Random Forest) to predict customer churn.</p>
+      <h3>Analysing & Predicting Sales Trends</h3>
+      <p>Built ML models (Logistic Regression, Random Forest) to Analysing & Predicting products sales trends.</p>
       <a href="https://github.com/tanvir153/retail-sales-trend-forecasting" target="_blank">View on GitHub</a>
+      <div class="notebook-embed">
+        <h4>Analysing & Predicting products sales trends</h4>
+        <iframe src="SalesTrends.html" title="Sales Trend Analysis Notebook"></iframe>
+      </div>
     </div>
 
     <div class="project-card">
@@ -253,6 +253,10 @@
       <h3>Car Price Prediction by Random Forest</h3>
       <p>Random Forest Regressor to predict car prices with full evaluation.</p>
       <a href="https://github.com/tanvir153/Car-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View on GitHub</a>
+      <div class="notebook-embed">
+        <h4>Car Prediction</h4>
+        <iframe src="Car.html" title="Sales Trend Analysis Notebook"></iframe>
+      </div>
     </div>
 
     <div class="project-card">
