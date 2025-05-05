@@ -3,176 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects | TANVIR</title>
-  <link rel="stylesheet" href="style.css">
+  <title>TANVIR | Data Analytics Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; color: #333; line-height: 1.6; }
-  
-    .title-banner {
-      background: #1a1a1a;
-      text-align: center;
-      padding: 1.5rem 0;
-    }
-    .bouncing-title span {
-      display: inline-block;
-      color: #fff;
-      font-size: 2rem;
-      animation: bounce 1.5s infinite ease-in-out;
-    }
-    @keyframes bounce {
-      0%,100% { transform: translateY(0); }
-      50%     { transform: translateY(-10px); }
-    }
-  
-    nav {
-      background: #0078d4;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      padding: 0.75rem 1rem;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
-    .nav-links li { list-style: none; }
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: opacity 0.2s;
-    }
-    .nav-links a:hover { opacity: 0.7; }
-  
+    /* Responsive Navbar */
     .hamburger {
       display: none;
+      position: absolute;
+      top: 20px;
+      right: 20px;
       flex-direction: column;
-      gap: 5px;
+      justify-content: space-around;
+      width: 30px;
+      height: 24px;
       cursor: pointer;
+      z-index: 1000;
     }
     .hamburger span {
-      width: 25px;
+      display: block;
       height: 3px;
-      background: #fff;
+      background: #ffffff;
       border-radius: 2px;
+      transition: all 0.3s ease;
     }
-  
     @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-      }
+      .hamburger { display: flex; }
       .nav-links {
         display: none;
         position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #fff;
+        top: 60px;
+        right: 20px;
         flex-direction: column;
-        align-items: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        z-index: 20;
+        background: #ffffff;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        z-index: 900;
       }
-      .nav-links.show {
-        display: flex;
+      .nav-links.show { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 12px 16px;
+        color: #333333;
+        text-decoration: none;
       }
-      .nav-links a {
-        color: #333;
-        padding: 0.75rem 1rem;
-        width: 100%;
-        text-align: center;
-      }
+      .nav-links li a:hover { background: rgba(0,0,0,0.05); }
     }
-  
-    .projects-header {
+
+    /* Profile & Hero */
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #edf0f3;
+      animation: pulse 2s infinite; /* slower pulse */
+      transition: transform 0.3s ease;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.6); }
+      70% { box-shadow: 0 0 0 25px rgba(255, 0, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+    }
+
+    .typing-role {
+      font-size: 1.2rem;
+      font-weight: 600;
       text-align: center;
-      margin: 3rem 1rem 2rem;
-    }
-    .projects-header h2 { font-size:2.5rem; margin-bottom: .5rem; }
-    .projects-header a {
-      color: #0078d4;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .projects-header a:hover { text-decoration: underline; }
-  
-    .projects-grid {
-      max-width: 1400px;
-      margin: 0 auto 4rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
-      padding: 0 1rem;
-    }
-  
-    .project-card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      transition: transform .3s, box-shadow .3s;
+      white-space: nowrap;
       overflow: hidden;
     }
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+    .cursor {
+      display: inline-block;
+      color: white;
+      font-weight: bold;
+      animation: blink 0.8s infinite;
     }
-    .project-card h3 {
-      color: #0078d4;
-      margin: 1rem;
-      font-size: 1.25rem;
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
-    .project-card p {
-      flex: 1;
-      margin: 0 1rem 1rem;
-      color: #555;
+
+    .data-section {
+      padding: 1rem 1rem;
+      background-color:white;
     }
-    .project-card a {
-      margin: 0 1rem 1rem;
-      color: #0078d4;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .project-card a:hover { text-decoration: underline; }
-  
-    .notebook-embed {
-      background: #fafafa;
-      border-top: 1px solid #eee;
-      padding: 1rem;
-      overflow-x: auto;
-    }
-    .notebook-embed h4 {
-      margin-bottom: .75rem;
-      font-size: 1rem;
-      color: #333;
-    }
-    .notebook-embed iframe {
-      width: 100%;
-      height: 450px;
-      min-width: 600px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-  
-    footer {
-      background: #1a1a1a;
-      color: #fff;
+
+    .data-box {
+      background: #f9f9f9;
+      padding: 2rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(100, 100, 255, 0.25);
+      transition: box-shadow 0.4s ease-in-out;
+      max-width: 900px;
+      margin: 2rem auto;
       text-align: center;
-      padding: 1rem 0;
     }
+
+    .data-box:hover {
+      box-shadow: 0 0 50px blue;
+    }
+
+    .data-box h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #2f49ff;
+      animation: fadeSlideUp 1s ease-out;
+    }
+
+    @keyframes fadeSlideUp {
+      0% { opacity: 0; transform: translateY(15px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Flip Quote Animation */
+    .flip-quote {
+      font-size: 1rem;
+      text-align: center;
+      color: #444;
+      margin-top: 1rem;
+      min-height: 60px;
+      perspective: 1000px;
+    }
+
+    .flip-quote .quote-inner {
+      display: inline-block;
+      transition: transform 0.6s ease-in-out;
+      transform-style: preserve-3d;
+      opacity: 0;
+    }
+
+    .flip-quote .quote-inner.show {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+
+    .quote-inner {
+      transform: rotateX(-90deg);
+    }
+    .cta-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary {
+  background-color:blue;
+  color: white;
+  border: 2px solid transparent;
+}
+
+.btn-primary:hover {
+  background-color:transparent;
+  color: red;
+  box-shadow: 0 4px 12px rgb(48, 86, 208);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: #480cec;
+  color:white;
+  border: 2px solid #0078d4;
+}
+
+.btn-secondary:hover {
+  background-color: transparent;
+  color: red;
+  box-shadow: 0 4px 12px rgba(0, 120, 212, 0.2);
+  transform: translateY(-2px);
+}
+
   </style>
-  
 </head>
-<body>
+
+<body class="light-theme">
 
   <div class="title-banner">
     <h2 class="bouncing-title">
@@ -182,15 +201,14 @@
     </h2>
   </div>
 
-  <nav>
-    <div class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
+  <!-- Navbar -->
+  <nav class="navbar slide-down" style="position: relative;">
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
     </div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="index.html">Home</a></li>
+    <ul id="nav-links" class="nav-links">
       <li><a href="about.html">About</a></li>
+      <li><a href="Projects.html">Projects</a></li>
       <li><a href="edu.html">Education</a></li>
       <li><a href="ex.html">Experience</a></li>
       <li><a href="galary.html">Gallery</a></li>
@@ -198,90 +216,101 @@
     </ul>
   </nav>
 
-  <section class="projects-header">
-    <h2>My Projects</h2>
-    <p><a href="https://github.com/tanvir153" target="_blank">Visit my GitHub →</a></p>
-  </section>
-
-  <section class="projects-grid">
-    <!-- AMAZON CARD with embedded notebook -->
-    <div class="project-card">
-      <h3>Amazon Sales Trend Analysis</h3>
-      <p>An EDA and sentiment analysis on Amazon reviews to uncover sales trends.</p>
-      <a href="https://github.com/tanvir153/dataScienceProject1" target="_blank">View on GitHub</a>
-      <div class="notebook-embed">
-        <h4>Trend Analysis</h4>
-        <iframe src="data_analysis.html" title="Sales Trend Analysis Notebook"></iframe>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <h3>Analysing & Predicting Sales Trends</h3>
-      <p>Built ML models (Logistic Regression, Random Forest) to Analysing & Predicting products sales trends.</p>
-      <a href="https://github.com/tanvir153/retail-sales-trend-forecasting" target="_blank">View on GitHub</a>
-      <div class="notebook-embed">
-        <h4>Analysing & Predicting products sales trends</h4>
-        <iframe src="SalesTrends.html" title="Sales Trend Analysis Notebook"></iframe>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <h3>Student Dropout Predictor</h3>
-      <p>Interactive web app predicting student dropout risk with visualizations.</p>
-      <a href="https://github.com/tanvir153/student-dropout-predictor" target="_blank">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <h3>Exploratory Analysis of Iris, Nile &amp; MPG</h3>
-      <p>EDA in Python and R to visualize dataset distributions and trends.</p>
-      <a href="https://github.com/tanvir153/Multivariate-Data-Visualization-Python-R" target="_blank">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <h3>House Price Prediction with Ridge Regression</h3>
-      <p>Forecasted real-estate prices using Ridge Regression on a large dataset.</p>
-      <a href="https://github.com/tanvir153/StatisticalProgramming" target="_blank">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <h3>COVID-19 Data Analysis</h3>
-      <p>Global COVID-19 trend visualizations using Pandas and Matplotlib.</p>
-      <a href="https://github.com/tanvir153/-Survival-Prediction-Using-Gradient-Boosting-Regression-" target="_blank">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <h3>Car Price Prediction by Random Forest</h3>
-      <p>Random Forest Regressor to predict car prices with full evaluation.</p>
-      <a href="https://github.com/tanvir153/Car-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View on GitHub</a>
-      <div class="notebook-embed">
-        <h4>Car Prediction</h4>
-        <iframe src="Car.html" title="Sales Trend Analysis Notebook"></iframe>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <h3>HealthCareDB (SQL)</h3>
-      <p>A SQL database design for managing hospital operations.</p>
-      <a href="https://github.com/tanvir153/tanvir153-HealthCareDB-SQLDesign" target="_blank">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <h3>Hospital Management System (MongoDB)</h3>
-      <p>NoSQL CRUD app for simulating hospital workflows with indexing.</p>
-      <a href="https://github.com/tanvir153/Hospital-Management-System-NOSQL-version" target="_blank">View on GitHub</a>
+  <!-- Hero Section -->
+  <section id="home" class="hero fade-in">
+    <div class="animated-background"></div>
+    <div class="hero-text animated-text">
+      <section class="profile-section">
+        <img src="kk7.jpg" alt="Tanvir" class="profile-pic">
+      </section>
+      <h2><span>Hello, I'm</span> <span class="highlight">Tanvir</span></h2>
+      <p class="subtitle typing-role"><span id="typing-text"></span><span class="cursor">|</span></p>
     </div>
   </section>
 
-  <footer>
+  <!-- Welcome Section -->
+  <section class="data-section">
+    <div class="data-box">
+      <h2>Welcome to My World of Data</h2>
+      <div class="flip-quote">
+        <span id="quote-inner" class="quote-inner">Loading insight...</span>
+      </div>     
+    </div>
+    <div class="cta-buttons">
+      <a href="Projects.html" class="btn-primary">See My Projects</a>
+      <a href="contact.html" class="btn-secondary">Contact Me</a>
+    </div> 
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
     <p>© 2025 Tanvir's Portfolio | All Rights Reserved</p>
   </footer>
 
+  <!-- Scripts -->
   <script>
     const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => {
+    const navLinks = document.getElementById('nav-links');
+    hamburger?.addEventListener('click', () => {
       navLinks.classList.toggle('show');
     });
+  </script>
+
+  <!-- Subtitle Typing Animation -->
+  <script>
+    const roles = ["Data Analyst", "Full Stack Developer", "Multilingual Analyst"];
+    const textElement = document.getElementById("typing-text");
+    let roleIndex = 0, charIndex = 0, typing = true;
+
+    function typeLoop() {
+      const currentRole = roles[roleIndex];
+      if (typing) {
+        if (charIndex < currentRole.length) {
+          textElement.textContent += currentRole.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeLoop, 100);
+        } else {
+          typing = false;
+          setTimeout(typeLoop, 1500);
+        }
+      } else {
+        if (charIndex > 0) {
+          textElement.textContent = currentRole.substring(0, charIndex - 1);
+          charIndex--;
+          setTimeout(typeLoop, 50);
+        } else {
+          typing = true;
+          roleIndex = (roleIndex + 1) % roles.length;
+          setTimeout(typeLoop, 300);
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", typeLoop);
+  </script>
+
+  <!-- Flip Quote Rotator -->
+  <script>
+    const quotes = [
+      "Turning raw data into real insights",
+      "From code to clarity, every dataset tells a story",
+      "Whether I'm designing machine learning models or visualizing complex sales trends into dashboards, I focus on building solutions that are intelligent, ethical, and human-centered."
+    ];
+
+    const quoteEl = document.getElementById("quote-inner");
+    let quoteIndex = 0;
+
+    function rotateFlipQuotes() {
+      quoteEl.classList.remove("show");
+      setTimeout(() => {
+        quoteEl.textContent = quotes[quoteIndex];
+        quoteEl.classList.add("show");
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+      }, 300);
+    }
+
+    setInterval(rotateFlipQuotes, 5000);
+    document.addEventListener("DOMContentLoaded", rotateFlipQuotes);
   </script>
 
 </body>
