@@ -240,6 +240,116 @@
       text-align: center;
       padding: 1rem 0;
     }
+    .pdf-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.pdf-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  max-width: 90%;
+  max-height: 90%;
+  width: 800px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.pdf-content iframe {
+  width: 100%;
+  height: 70vh;
+  border: none;
+  border-radius: 8px;
+}
+
+.pdf-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.pdf-buttons a,
+.pdf-buttons button {
+  background: #0078d4;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.pdf-buttons a:hover,
+.pdf-buttons button:hover {
+  background: #005bb5;
+}
+button, .view-report-btn {
+  background: #0078d4;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, .view-report-btn:hover {
+  background: #005bb5;
+  transform: scale(1.05);
+}
+
+.project-card.hidden {
+  display: none !important;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem auto 3rem;  /* center horizontally and add spacing */
+  width: fit-content;       /* shrink to fit button width */
+}
+
+
+.pagination button {
+  background: #0078d4;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button:hover {
+  background: #005bb5;
+  transform: scale(1.05);
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
   </style>
 </head>
 <body>
@@ -271,22 +381,23 @@
   <div class="animated-bg">
     <section class="projects-header">
       <h2>My Projects</h2>
-      <p><a href="https://github.com/tanvir153" target="_blank">Visit my GitHub →</a></p>
+      <p><a href="https://github.com/tanvir153" target="_blank">Visit my GitHub</a></p>
     </section>
 
-  <section class="projects-grid">
-    <!-- AMAZON CARD with embedded notebook -->
-    <div class="project-card">
+    <section class="projects-grid" id="projectContainer">
+      <div class="project-card hidden">
       <h3>Amazon Sales Trend Analysis</h3>
-      <p>Analyzed Amazon reviews using Python and NLP to extract insights on customer sentiment, rating trends, and review themes. Built interactive dashboards with Plotly and maintained version control via GitLab. Focused on three products, showcasing data cleaning, EDA, and VADER sentiment analysis.</p>
+      <p>Analyzed Amazon reviews using Python and NLP to extract insights on customer sentiment, rating trends, and review themes. Built interactive dashboards with Plotly and maintained version control via GitLab. Focused on three products, showcasing data cleaning, EDA, and VADER sentiment analysis.
+        .</p>
       <a href="https://github.com/tanvir153/dataScienceProject1" target="_blank">View on GitHub</a>
       <div class="notebook-embed">
         <h4>Trend Analysis</h4>
-       <iframe src="amazon.html" title="Sales Trend Analysis Notebook"></iframe>
+        <iframe src="amazon.html" title="Sales Trend Analysis Notebook"></iframe>
       </div>
+      <button class="view-report-btn" onclick="openPDF('pdfOverlay2')">View Report</button>
     </div>
 
-    <div class="project-card">
+    <div class="project-card hidden">
       <h3>Analysing & Predicting Sales Trends</h3>
       <p>Built ML models (Logistic Regression, Random Forest) to Analysing & Predicting products sales trends.</p>
       <a href="https://github.com/tanvir153/retail-sales-trend-forecasting" target="_blank">View on GitHub</a>
@@ -296,40 +407,53 @@
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card hidden">
       <h3>Student Dropout Predictor</h3>
       <p>Interactive web app predicting student dropout risk with visualizations.</p>
-      
       <a href="https://github.com/tanvir153/student-dropout-predictor" target="_blank">View on GitHub</a><br>
       <a href="https://tanvir153.github.io/student-dropout-predictor/" target="_blank">Check the UI Demo</a>
-    
       <div class="video-preview" style="margin-top: 15px;">
         <h4>Project Walkthrough</h4>
         <iframe width="100%" height="315" src="overview (online-video-cutter.com).mp4" 
                 title="Student Dropout Predictor Video" frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen></iframe>
+    </div>
+    </div>
+
+    <div class="project-card hidden">
+      <h3>MediCareDB: Scalable NoSQL-Based Healthcare Management System</h3>
+      <p>MediCareDB is a document-oriented healthcare database system built using MongoDB and Python (PyMongo). The system features automated data generation, denormalization for performance, indexed queries, and aggregation pipelines. Optimized using indexing strategies and real-time performance tracking (executionTimeMillis), MediCareDB demonstrates how NoSQL databases outperform traditional SQL systems in scalability and flexibility for dynamic, high-volume medical data. 
+      </p>
+      <a href="https://github.com/tanvir153/Hospital-Management-System-NOSQL-version" target="_blank">View on GitHub</a>
+      <div class="notebook-embed">
+        <h4>Scalable NoSQL-Based Healthcare Management System</h4>
+        <iframe src="mongoDB.html" title="Sales Trend Analysis Notebook"></iframe>
+        <!-- View Report Button -->
+        <button class="view-report-btn" onclick="openPDF('pdfOverlay1')">View Report</button>
       </div>
     </div>
-    <div class="project-card">
+
+    <div class="project-card hidden">
       <h3>Exploratory Analysis of Iris, Nile &amp; MPG</h3>
       <p>EDA in Python and R to visualize dataset distributions and trends.</p>
       <a href="https://github.com/tanvir153/Multivariate-Data-Visualization-Python-R" target="_blank">View on GitHub</a>
     </div>
 
-    <div class="project-card">
+    <div class="project-card hidden">
       <h3>House Price Prediction with Ridge Regression</h3>
       <p>Forecasted real-estate prices using Ridge Regression on a large dataset.</p>
       <a href="https://github.com/tanvir153/StatisticalProgramming" target="_blank">View on GitHub</a>
+      <button class="view-report-btn" onclick="openPDF('pdfOverlay3')">View Report</button>
     </div>
 
-    <div class="project-card">
+    <div class="project-card hidden">
       <h3>COVID-19 Data Analysis</h3>
       <p>Global COVID-19 trend visualizations using Pandas and Matplotlib.</p>
       <a href="https://github.com/tanvir153/-Survival-Prediction-Using-Gradient-Boosting-Regression-" target="_blank">View on GitHub</a>
     </div>
 
-    <div class="project-card">
+    <div class="project-card hidden">
       <h3>Car Price Prediction by Random Forest</h3>
       <p>Random Forest Regressor to predict car prices with full evaluation.</p>
       <a href="https://github.com/tanvir153/Car-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View on GitHub</a>
@@ -339,18 +463,52 @@
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card hidden">
       <h3>HealthCareDB (SQL)</h3>
       <p>A SQL database design for managing hospital operations.</p>
       <a href="https://github.com/tanvir153/tanvir153-HealthCareDB-SQLDesign" target="_blank">View on GitHub</a>
     </div>
-
-    <div class="project-card">
-      <h3>Hospital Management System (MongoDB)</h3>
-      <p>NoSQL CRUD app for simulating hospital workflows with indexing.</p>
-      <a href="https://github.com/tanvir153/Hospital-Management-System-NOSQL-version" target="_blank">View on GitHub</a>
+    <div class="pagination">
+      <button id="prevBtn">← Previous</button>
+      <button id="nextBtn">Next →</button>
     </div>
   </section>
+  
+
+ 
+<!-- PDF Overlay for Project 1 -->
+<div id="pdfOverlay1" class="pdf-overlay">
+  <div class="pdf-content">
+    <iframe src="MongoDb.pdf"></iframe>
+    <div class="pdf-buttons">
+      <a href="MongoDb.pdf" download>Download</a>
+      <button onclick="closePDF('pdfOverlay1')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- PDF Overlay for Project 2 -->
+<div id="pdfOverlay2" class="pdf-overlay">
+  <div class="pdf-content">
+    <iframe src="DataScience.pdf"></iframe>
+    <div class="pdf-buttons">
+      <a href="DataScience.pdf" download>Download</a>
+      <button onclick="closePDF('pdfOverlay2')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- PDF Overlay for Project 3 -->
+<div id="pdfOverlay3" class="pdf-overlay">
+  <div class="pdf-content">
+    <iframe src="Housing.pdf"></iframe>
+    <div class="pdf-buttons">
+      <a href="Housing.pdf" download>Download</a>
+      <button onclick="closePDF('pdfOverlay3')">Close</button>
+    </div>
+  </div>
+</div>
+
 
   <footer>
     <p>© 2025 Tanvir's Portfolio | All Rights Reserved</p>
@@ -363,6 +521,54 @@
       navLinks.classList.toggle('show');
     });
   </script>
-
+  <script>
+    function openPDF(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+    function closePDF(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+  </script>
+  
+  
+  <script>
+    const cardsPerPage = 3;
+    let currentPage = 1;
+  
+    function updatePagination() {
+      const cards = document.querySelectorAll('.project-card');
+      const totalPages = Math.ceil(cards.length / cardsPerPage);
+  
+      cards.forEach((card, index) => {
+        card.classList.add('hidden');
+        if (index >= (currentPage - 1) * cardsPerPage && index < currentPage * cardsPerPage) {
+          card.classList.remove('hidden');
+        }
+      });
+  
+      document.getElementById('prevBtn').disabled = currentPage === 1;
+      document.getElementById('nextBtn').disabled = currentPage === totalPages;
+    }
+  
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updatePagination();
+      }
+    });
+  
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      const totalPages = Math.ceil(document.querySelectorAll('.project-card').length / cardsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        updatePagination();
+      }
+    });
+  
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', updatePagination);
+  </script>
+  
+  
 </body>
 </html>
