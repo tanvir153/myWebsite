@@ -77,75 +77,47 @@
     }
 
     /* Cards Grid */
-    .cards {
+   .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
 
-    /* Card */
     .card {
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.05);
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background-color 0.3s ease;
+      transition: 0.3s ease;
       display: flex;
       flex-direction: column;
-      cursor: default;
     }
     .card:hover {
       transform: translateY(-8px);
       box-shadow: 0 16px 40px rgba(0,0,0,0.1);
-      border: 2px solid var(--accent-color);
-      background-color: var(--accent-color);
+      border: 2px solid #2f2fcf;
+      background-color: #2f2fcf;
     }
-    .card:hover h3,
-    .card:hover .meta,
-    .card:hover p,
-    .card:hover ul li {
-      color: #fff;
+    .card:hover * {
+      color: #fff !important;
     }
-
     .card img {
       width: 100%;
       height: 200px;
       object-fit: cover;
-      transition: transform 0.3s ease;
       cursor: pointer;
     }
-    .card img:hover {
-      transform: scale(1.05);
-    }
-
     .card-content {
       padding: 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
     }
-    .card-content h3 {
-      margin: 0 0 10px;
-      font-size: 1.5rem;
-      color: #333;
-      transition: color 0.3s ease;
-    }
-    .card-content .meta {
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 15px;
-      transition: color 0.3s ease;
-    }
+    .card-content h3 { font-size: 1.5rem; color: #333; }
+    .card-content .meta { font-size: 0.95rem; color: #666; margin-bottom: 15px; }
     .card-content p, .card-content ul {
       font-size: 1rem;
       color: #444;
       line-height: 1.6;
-      margin-bottom: 15px;
-      transition: color 0.3s ease;
     }
-    .card-content ul {
-      padding-left: 1.2rem;
-    }
+
 
     /* Animated Background */
     .animated-bg {
@@ -204,6 +176,24 @@
       font-size: 1.1rem;
       text-align: center;
     }
+        .pagination-buttons {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .pagination-buttons button {
+      padding: 10px 20px;
+      background: #2f2fcf;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      margin: 0 10px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .pagination-buttons button:disabled {
+      background: gray;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body class="light-theme">
@@ -227,6 +217,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="Projects.html">Projects</a></li>
       <li><a href="https://tanvir153.github.io/gamebox/">GameBox</a></li>
+      <li><a href="ex.html">Experience</a></li>
       <li><a href="galary.html">Gallery</a></li>
       <li><a href="feedback.html">Feedback</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -235,41 +226,70 @@
 
   <div class="animated-bg">
     <div class="container">
-      <div class="section-header slide-down"><h2>Education</h2></div>
-      <div class="cards slide-up">
-        <!-- MSc Data Science -->
-        <div class="card"><img src="b1.jpg" alt="University of Chester"><div class="card-content"><h3>MSc Data Science (Ongoing)</h3><div class="meta">University of Chester, UK</div><p><strong>Modules:</strong> Data Science Principles, Statistical Programming, SQL, Machine Learning, Enterprise Development, Research Methods, Dissertation</p></div></div>
-        <!-- BSc Software Engineering -->
-        <div class="card"><img src="b3.jpg" alt="Zhengzhou University"><div class="card-content"><h3>BSc Software Engineering</h3><div class="meta">Zhengzhou University, China • CGPA: 3.47/4.00 (87%)</div><p><strong>Outstanding Student Award</strong></p><ul><li>C, Java, Python, Data Structures & Algorithms</li><li>Computer Architecture & Organization</li><li>Database Systems, AI, Software Requirements Engineering</li><li>Calculus, Probability & Statistics</li><li>Operating Systems, Computer Networks</li></ul></div></div>
-        <!-- Python Boot Camp -->
-        <div class="card"><img src="b4.jpg" alt="BUET Python Bootcamp"><div class="card-content"><h3>Python Boot Camp</h3><div class="meta">Bangladesh University of Engineering and Technology (BUET) • 2024</div></div></div>
-        <!-- Outstanding Student Award -->
-        <div class="card"><img src="b2.jpg" alt="Award"><div class="card-content"><h3>Outstanding Student Award</h3><div class="meta">Zhengzhou University • 2021</div></div></div>
+      <div class="section-header"><h2>Education</h2></div>
+      <div class="cards" id="cardContainer">
+        <div class="card"><img src="b1.jpg" alt="University of Chester"><div class="card-content"><h3>MSc Data Science</h3>
+        <div class="meta"></div><h4>University of Chester,England, United Kingdom</h4>
+        <p><strong>Duration:</strong> Sep 2024 – Present</p>
+        <p><strong>Modules:</strong> Data Science Principles, Statistical Programming, SQL, Machine Learning, Enterprise Development, Research Methods, Dissertation</p></div></div>
+        <div class="card"><img src="b3.jpg" alt="Zhengzhou University"><div class="card-content"><h3>BSc Software Engineering</h3>
+          <h4>Zhengzhou University, Henan, China</h2>
+        <p><strong>Duration:</strong> Sept 2018-Aug 2022</p>
+        <p>Core Modules</p>
+        <ul><li>C, Java, Python, Data Structures & Algorithms</li><li>Computer Architecture & Organization</li><li>Database Systems, AI, Software Requirements Engineering</li><li>Calculus, Probability & Statistics</li><li>Operating Systems, Computer Networks</li></ul>
+        <div class="meta"></div></div></div>
+        <div class="card"><img src="b4.jpg" alt="BUET Bootcamp"><div class="card-content"><h3>Python Bootcamp</h3><div class="meta">BUET, 2024</div></div></div>
+        <div class="card"><img src="b2.jpg" alt="Award"><div class="card-content"><h3>Outstanding Student</h3><div class="meta">Zhengzhou University.</div></div></div>
+        <div class="card"><img src="HSK.png" alt="HSK 4"><div class="card-content"><h3>Chinese Proficiency</h3><div class="meta">HSK 4, 2022</div></div></div>
       </div>
-    </div>
 
-    <!-- Image Popup Modal -->
-    <div id="imgModal" class="img-modal">
-      <span class="img-close">&times;</span>
-      <img class="img-modal-content" id="modalImg" />
-      <div id="caption" class="img-caption"></div>
+      <div class="pagination-buttons">
+        <button onclick="showPrev()" id="prevBtn">Previous</button>
+        <button onclick="showNext()" id="nextBtn">Next</button>
+      </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer slide-down"><p>© 2025 Tanvir's Portfolio | All Rights Reserved</p></footer>
+  <!-- Modal -->
+  <div id="imgModal" class="img-modal">
+    <span class="img-close">&times;</span>
+    <img class="img-modal-content" id="modalImg" />
+    <div class="img-caption" id="caption"></div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 Tanvir's Portfolio | All Rights Reserved</p>
+  </footer>
 
   <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
+    // Hamburger
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('show');
     });
 
-    // Modal logic
+    // Pagination
+    let currentPage = 0;
+    const cardsPerPage = 2;
+    const allCards = document.querySelectorAll("#cardContainer .card");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function updateVisibleCards() {
+      allCards.forEach((card, i) => {
+        card.style.display = (i >= currentPage * cardsPerPage && i < (currentPage + 1) * cardsPerPage) ? "block" : "none";
+      });
+      prevBtn.disabled = currentPage === 0;
+      nextBtn.disabled = (currentPage + 1) * cardsPerPage >= allCards.length;
+    }
+    function showNext() { if ((currentPage + 1) * cardsPerPage < allCards.length) { currentPage++; updateVisibleCards(); }}
+    function showPrev() { if (currentPage > 0) { currentPage--; updateVisibleCards(); }}
+    updateVisibleCards();
+
+    // Modal
     const modal = document.getElementById('imgModal');
     const modalImg = document.getElementById('modalImg');
     const captionText = document.getElementById('caption');
+
     document.querySelectorAll('.card img').forEach(img => {
       img.onclick = () => {
         modal.style.display = 'flex';
