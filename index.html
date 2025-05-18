@@ -51,6 +51,7 @@
       }
       .nav-links li a:hover { background: rgba(0,0,0,0.05); }
     }
+    
 
     /* Profile & Hero */
     .profile-pic {
@@ -62,6 +63,43 @@
       animation: pulse 2s infinite; /* slower pulse */
       transition: transform 0.3s ease;
     }
+
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    }
+
+    .modal .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      background: none;
+      border: none;
+      z-index: 10000;
+    }
+
+
 
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.6); }
@@ -96,7 +134,7 @@
 
     .data-box {
       background: #f9f9f9;
-      padding: 2rem 2.5rem;
+      padding: 2rem 2rem;
       border-radius: 20px;
       box-shadow: 0 0 30px rgba(100, 100, 255, 0.25);
       transition: box-shadow 0.4s ease-in-out;
@@ -211,6 +249,7 @@
       <li><a href="Projects.html">Projects</a></li>
       <li><a href="https://tanvir153.github.io/gamebox/">GameBox</a></li>
       <li><a href="edu.html">Education</a></li>
+      <li><a href="ex.html">Experience</a></li>
       <li><a href="galary.html">Gallery</a></li>
       <li><a href="feedback.html">Feedback</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -222,7 +261,8 @@
     <div class="animated-background"></div>
     <div class="hero-text animated-text">
       <section class="profile-section">
-      <img src="pp.jpg" alt="Tanvir" class="profile-pic">
+      <img src="pp2.jpg" alt="Tanvir" class="profile-pic" id="profilePic">
+
       </section>
       <h2><span>Hello, I'm</span> <span class="highlight">Tanvir</span></h2>
       <p class="subtitle typing-role"><span id="typing-text"></span><span class="cursor">|</span></p>
@@ -242,6 +282,13 @@
       <a href="contact.html" class="btn-secondary">Contact Me</a>
     </div> 
   </section>
+
+<!-- Profile Modal -->
+<div id="profileModal" class="modal">
+  <span class="close" id="closeModal">&times;</span>
+  <img class="modal-content" id="modalImg" alt="">
+</div>
+
 
   <!-- Footer -->
   <footer class="footer">
@@ -313,6 +360,51 @@
     setInterval(rotateFlipQuotes, 5000);
     document.addEventListener("DOMContentLoaded", rotateFlipQuotes);
   </script>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const profilePic = document.getElementById("profilePic");
+    const modal = document.getElementById("profileModal");
+    const modalImg = document.getElementById("modalImg");
+    const closeBtn = document.getElementById("closeModal");
+
+    if (profilePic && modal && modalImg && closeBtn) {
+      profilePic.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImg.style.display = "none"; // Hide image while loading
+
+        // Load image and show after it's fully loaded
+        const tempImg = new Image();
+        tempImg.src = profilePic.src;
+        tempImg.onload = () => {
+          modalImg.src = tempImg.src;
+          modalImg.style.display = "block";
+          modalImg.style.opacity = "0";
+          setTimeout(() => {
+            modalImg.style.transition = "opacity 0.4s ease-in-out";
+            modalImg.style.opacity = "1";
+          }, 10);
+        };
+      });
+
+      closeBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        modalImg.style.display = "none";
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+          modalImg.style.display = "none";
+        }
+      });
+    }
+  });
+</script>
+
+
+
+
 
 </body>
 </html>
