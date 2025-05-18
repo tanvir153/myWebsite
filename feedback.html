@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feedback | TANVIR</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
   <style>
-    .hamburger { display: none; position: absolute; top: 20px; right: 20px; flex-direction: column; justify-content: space-around; width: 30px; height: 24px; cursor: pointer; z-index: 1000; }
-    .hamburger span { display: block; height: 3px; background: #ffffff; border-radius: 2px; transition: all 0.3s ease; }
-    @media (max-width: 768px) {
-      .hamburger { display: flex; }
-      .nav-links { display: none; position: absolute; top: 60px; right: 20px; flex-direction: column; background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; z-index: 900; }
-      .nav-links.show { display: flex; }
-      .nav-links li a { display: block; padding: 12px 16px; color: #333333; text-decoration: none; }
-      .nav-links li a:hover { background: rgba(0,0,0,0.05); }
-    }
+    body { font-family: 'Poppins', sans-serif; background: #f8f9fa; }
     .animated-bg {
       position: relative;
       overflow: hidden;
@@ -25,10 +17,8 @@
     .animated-bg::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
       background: radial-gradient(circle at 20% 20%, rgba(0,119,255,0.2), transparent 25%),
                   radial-gradient(circle at 80% 80%, rgba(0,200,151,0.2), transparent 25%);
       background-size: 50% 50%;
@@ -39,290 +29,210 @@
       0%, 100% { transform: translate(0,0);}
       50% { transform: translate(25%,25%);}
     }
-
-    .feedback-container {
-      max-width: 700px;
-      margin: auto;
+    .review-card {
       background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 1;
-    }
-
-    .feedback-container h2, h3 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    #feedbackForm label {
-      font-weight: 600;
-      margin-top: 1rem;
-      display: block;
-    }
-
-    #feedbackForm input, #feedbackForm textarea, #feedbackForm select {
-      width: 100%;
-      padding: 12px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    #feedbackForm button {
-      margin-top: 1rem;
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    #feedbackForm button:hover {
-      background: var(--accent-color);
-    }
-
-    .comment-box {
-      background: #eef2ff;
-      border-left: 4px solid var(--primary-color);
       padding: 1rem;
-      border-radius: 10px;
-      margin-top: 1rem;
-      position: relative;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+      transition: transform .3s;
     }
-
-    .comment-box button.delete-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .pagination {
+    .review-card:hover { transform: translateY(-5px); }
+    .star { font-size: 1.5rem; color: #ffc107; }
+    .star.muted { color: #ccc; }
+    .pagination-controls {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 1rem;
       margin-top: 1.5rem;
     }
-
-    .pagination button {
-      background: #0077ff;
-      color: white;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .pagination button:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-
-    #clearFeedback {
-      display: none;
-      background: #cc0000;
-      color: white;
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
+    .navbar-dark .navbar-nav .nav-link.active {
+      color: #ffc107;
     }
   </style>
 </head>
-<body class="light-theme">
-
-  <!-- Title Banner -->
-  <div class="title-banner">
-    <h2 class="bouncing-title">
-      <span>C</span><span>o</span><span>d</span><span>e</span><span>.</span>
-      <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>e</span><span>.</span>
-      <span>C</span><span>o</span><span>n</span><span>t</span><span>r</span><span>o</span><span>l</span><span>.</span>
-    </h2>
-  </div>
-
-  <!-- Navbar -->
-  <nav class="navbar slide-down">
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-aos="fade-down">
+  <div class="container">
+    <a class="navbar-brand" href="#">TANVIR</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="Projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="edu.html">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="ex.html">Experience</a></li>
+        <li class="nav-item"><a class="nav-link active" href="feedback.html">Feedback</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
     </div>
-    <ul id="nav-links" class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="Projects.html">Projects</a></li>
-      <li><a href="https://tanvir153.github.io/gamebox/">GameBox</a></li>
-      <li><a href="edu.html">Education</a></li>
-      <li><a href="galary.html">Gallery</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Feedback Section -->
-  <div class="animated-bg">
-    <div class="feedback-container">
-      <h2>Leave Your Feedback</h2>
-      <form id="feedbackForm">
-        <label for="name">Name</label>
-        <input type="text" id="name" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" required>
-
-        <label for="country">Country</label>
-        <select id="country" required>
-          <option value="">Select your country</option>
-          <option>United Kingdom</option>
-          <option>Bangladesh</option>
-          <option>India</option>
-          <option>United States</option>
-          <option>China</option>
-          <option>Other</option>
-        </select>
-
-        <label for="role">I am a</label>
-        <select id="role" required>
-          <option value="">Select your role</option>
-          <option>Student</option>
-          <option>Recruiter</option>
-          <option>Faculty</option>
-          <option>Other</option>
-        </select>
-
-        <label for="comments">Comments</label>
-        <textarea id="comments" rows="4" required></textarea>
-
-        <button type="submit">Submit</button>
-      </form>
-
-      <h3>What Others Are Saying</h3>
-      <div id="commentSection"></div>
-
-      <div class="pagination">
-        <button id="prevBtn">Previous</button>
-        <button id="nextBtn">Next</button>
+  </div>
+</nav>
+<header class="bg-primary text-white text-center py-5 mb-4" data-aos="fade-up">
+  <h1>🌟 Feedback Wall</h1>
+  <p class="lead">Share your experience or read what others say!</p>
+</header>
+<div class="animated-bg">
+  <div class="container">
+    <div id="openFormButton" class="text-center mb-4" data-aos="zoom-in">
+      <button id="reviewBtn" class="btn btn-lg btn-outline-primary">Leave a Review</button>
+    </div>
+    <div id="formSection" class="mb-5" style="display:none;" data-aos="fade-up">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScmzhK-fQOePXcB6QA-UOhMCgXS_l6rp_nvQTQYojXxtq3FOA/viewform?embedded=true" width="100%" height="912" frameborder="0">Loading…</iframe>
+    </div>
+    <div id="reviewsSection" data-aos="fade-up">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Student Feedback</h2>
+        <button id="refreshBtn" class="btn btn-sm btn-outline-secondary">🔄 Refresh</button>
       </div>
-
-      <button id="clearFeedback">Clear All Feedback</button>
+      <div id="reviewsList" class="row g-4 justify-content-center"></div>
+      <div class="pagination-controls">
+        <button id="prevBtn" class="btn btn-outline-primary" disabled>← Previous</button>
+        <button id="nextBtn" class="btn btn-outline-primary">Next →</button>
+      </div>
     </div>
   </div>
+</div>
+<footer class="bg-dark text-white text-center py-3">
+  <p class="mb-0">© 2025 Tanvir | All Rights Reserved</p>
+</footer>
+<style>
+  .star {
+    font-size: 1.5rem;
+    color: #ffc107; /* Gold */
+  }
+  .star.muted {
+    color: #ddd; /* Light gray */
+  }
+</style>
 
-  <!-- Footer -->
-  <footer class="footer slide-down">
-    <p>© 2025 Tanvir's Portfolio | All Rights Reserved</p>
-  </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 300, once: true });
 
-  <!-- Scripts -->
-  <script>
-    const form = document.getElementById('feedbackForm');
-    const commentSection = document.getElementById('commentSection');
-    const clearBtn = document.getElementById('clearFeedback');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFXmCL6QzmeuY9UiD42kRO4xUt4EoXd7Ce87ScmP8Xykvair-lA80yIJhJrlZO59D5OV8TwnZdML7B/pub?gid=634505133&single=true&output=csv";
 
-    let allComments = [];
-    let currentPage = 0;
-    const commentsPerPage = 4;
-    const isAdmin = new URLSearchParams(window.location.search).get('admin') === '1';
-    if (isAdmin) clearBtn.style.display = 'block';
+let allReviews = [];
+let currentPage = 0;
+const reviewsPerPage = 3;
 
-    window.onload = function () {
-      allComments = JSON.parse(localStorage.getItem('feedbackList')) || [];
-      renderComments();
-    };
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const country = document.getElementById('country').value.trim();
-      const role = document.getElementById('role').value.trim();
-      const comment = document.getElementById('comments').value.trim();
-
-      if (name && comment && country && role) {
-        const feedback = { name, comment, country, role };
-        allComments.unshift(feedback);
-        localStorage.setItem('feedbackList', JSON.stringify(allComments));
-        form.reset();
-        currentPage = 0;
-        renderComments();
-      }
-    });
-
-    function renderComments() {
-      commentSection.innerHTML = '';
-      const start = currentPage * commentsPerPage;
-      const end = start + commentsPerPage;
-      const pageComments = allComments.slice(start, end);
-
-      pageComments.forEach((feedback, index) => {
-        const { name, comment, country, role } = feedback;
-        const box = document.createElement('div');
-        box.className = 'comment-box';
-        box.innerHTML = `
-          <strong>${name} (${role || 'Other'} from ${country || 'Unknown'}) says:</strong>
-          <p>${comment}</p>
-          ${isAdmin ? `<button class="delete-btn" data-index="${start + index}">Delete</button>` : ''}
-        `;
-        commentSection.appendChild(box);
-      });
-
-      prevBtn.disabled = currentPage === 0;
-      nextBtn.disabled = end >= allComments.length;
-
-      if (isAdmin) {
-        document.querySelectorAll('.delete-btn').forEach(btn => {
-          btn.addEventListener('click', function () {
-            const idx = parseInt(this.getAttribute('data-index'));
-            if (confirm('Delete this comment?')) {
-              allComments.splice(idx, 1);
-              localStorage.setItem('feedbackList', JSON.stringify(allComments));
-              renderComments();
-            }
-          });
-        });
-      }
+function parseCSV(txt) {
+  const lines = txt.trim().split('\n');
+  const headers = lines.shift().split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+  return lines.map(line => {
+    const cols = [], obj = {};
+    let cur = '', inQuotes = false;
+    for (let ch of line) {
+      if (ch === '"') inQuotes = !inQuotes;
+      else if (ch === ',' && !inQuotes) { cols.push(cur); cur = ''; }
+      else cur += ch;
     }
-
-    prevBtn.addEventListener('click', () => {
-      if (currentPage > 0) {
-        currentPage--;
-        renderComments();
-      }
+    cols.push(cur);
+    headers.forEach((h, i) => {
+      obj[h.trim()] = (cols[i] || '').trim().replace(/^"|"$/g, '');
     });
+    return obj;
+  });
+}
 
-    nextBtn.addEventListener('click', () => {
-      if ((currentPage + 1) * commentsPerPage < allComments.length) {
-        currentPage++;
-        renderComments();
-      }
-    });
+function starString(n) {
+  const value = parseInt(n, 10);
+  const stars = isNaN(value) ? 0 : Math.max(0, Math.min(5, value));
+  return '<span class="star">' + '★'.repeat(stars) + '</span>' +
+         '<span class="star muted">' + '★'.repeat(5 - stars) + '</span>';
+}
 
-    clearBtn.addEventListener('click', function () {
-      if (confirm('Are you sure you want to clear all feedback?')) {
-        allComments = [];
-        localStorage.removeItem('feedbackList');
-        renderComments();
-      }
-    });
+function renderReviews() {
+  const start = currentPage * reviewsPerPage;
+  const end = start + reviewsPerPage;
+  const pageData = allReviews.slice(start, end);
 
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger?.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-  </script>
+  const html = pageData.map((r, i) => {
+    const reviewRaw = r["Review"] || "0";
+    const review = parseInt(reviewRaw.trim());
+    console.log("DEBUG review value:", reviewRaw, "->", review);
+
+    return `
+      <div class="col-md-8 col-lg-4" data-aos="zoom-in" data-aos-delay="${i * 50}">
+        <div class="review-card">
+          <h5>${r["Full Name"] || 'Anonymous'}</h5>
+          <p><strong>Email:</strong> ${r["Email"] || r["Email Address"] || 'N/A'}</p>
+          <p><strong>Occupation:</strong> ${r["Occupation"] || 'N/A'}</p>
+          <p><strong>Institution:</strong> ${r["Institution / Organization"] || 'N/A'}</p>
+          <p><strong>Review:</strong> ${starString(review)}</p>
+          <p class="comment"><strong>Comments:</strong> ${r["Comments"] || 'N/A'}</p>
+          <small class="text-muted">${r["Timestamp"] ? new Date(r["Timestamp"]).toLocaleString() : ''}</small>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById("reviewsList").innerHTML = html;
+  document.getElementById("prevBtn").disabled = currentPage === 0;
+  document.getElementById("nextBtn").disabled = end >= allReviews.length;
+}
+
+async function loadReviews() {
+  try {
+    const res = await fetch(CSV_URL + '&cb=' + Date.now());
+    const text = await res.text();
+    allReviews = parseCSV(text).reverse();
+    currentPage = 0;
+    renderReviews();
+  } catch (err) {
+    console.error("Failed to load reviews", err);
+  }
+}
+
+document.getElementById("prevBtn").onclick = () => {
+  if (currentPage > 0) {
+    currentPage--;
+    renderReviews();
+  }
+};
+
+document.getElementById("nextBtn").onclick = () => {
+  if ((currentPage + 1) * reviewsPerPage < allReviews.length) {
+    currentPage++;
+    renderReviews();
+  }
+};
+
+document.getElementById("reviewBtn").onclick = () => {
+  document.getElementById("openFormButton").style.display = "none";
+  document.getElementById("formSection").style.display = "block";
+  document.getElementById("formSection").scrollIntoView({ behavior: 'smooth' });
+};
+
+const iframe = document.querySelector('#formSection iframe');
+iframe.addEventListener('load', () => {
+  const url = iframe.contentWindow.location.href;
+  if (url.includes('formResponse')) {
+    setTimeout(() => {
+      document.getElementById('formSection').style.display = 'none';
+      document.getElementById('openFormButton').style.display = 'block';
+      loadReviews();
+      document.getElementById('reviewsSection').scrollIntoView({ behavior: 'smooth' });
+    }, 800);
+  }
+});
+
+document.getElementById("refreshBtn").addEventListener("click", loadReviews);
+document.addEventListener("DOMContentLoaded", loadReviews);
+</script>
+
+<style>
+  .star {
+    font-size: 1.5rem;
+    color: #ffc107;
+  }
+  .star.muted {
+    color: #ddd;
+  }
+</style>
+
+
 </body>
 </html>
